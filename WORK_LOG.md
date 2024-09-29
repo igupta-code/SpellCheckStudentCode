@@ -6,7 +6,7 @@ Name: YOUR NAME HERE
 | Sept 25 |  2:30-3pm  |                             I did a little research on hash tables, which were mentioned in class. From what I understand, hash tables are basically functions where you input a key(the word you are trying to check) and you get out a index that tells you where that word is stored. |
 | Sept 26 | 12:45-1:45 | In class today we talked about a couple different ideas. One was breaking up the dictionary into a map with length 26, where each index starts with its corresponding letter. Now, based on the first letter of the word, you have a smaller area where you need to do binary search on. |
 |         |            |                                                         Another idea was to create a kind of tree that stores all the words in the dictionary. Each node would represent a valid word in the dictionary. To check a valid word, you would go down the tree, adding one letter at a time. |
-|         |            |                                                                                                                                                                                                                                                                                          |
+| Sept 27 | 5:45-6:25  |                                        I was very lost so I looked more into hash tables because they are kind of intreseting. I came across one idea of multiplying each char in the string by 31(not sure why this number) in order to create a unique hash function for each letter.  |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
