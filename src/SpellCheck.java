@@ -19,6 +19,11 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
         Trie dict = new Trie();
+        for(String word: dictionary){
+            dict.insert(word);
+            dict.printTrie();
+        }
+
 
 
         return null;

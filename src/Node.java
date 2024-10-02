@@ -13,8 +13,8 @@ public class Node {
         return isWord;
     }
 
-    public void setWord(){
-        // ermmm
+    public void setWord(boolean word){
+        isWord = word;
     }
 
     public Node[] getNext(){

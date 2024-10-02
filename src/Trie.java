@@ -1,12 +1,13 @@
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+
+// Isha Gupta
+// Oct ___
 public class Trie {
     private Node root;
 
     public Trie(){
         root = new Node();
-    }
-
-    public Trie(Node root){
-        this.root = root;
     }
 
     // Inserts a new string into the trie
@@ -16,7 +17,8 @@ public class Trie {
 
     public void insert(String s, Node root){
         // Base case: String is done (all added)
-        if(s.length() == 0){
+        if(s.isEmpty()){
+            root.setWord(true);
             return;
         }
 
@@ -25,7 +27,7 @@ public class Trie {
             // If the index is empty then add the letter there
             root.getNext()[s.charAt(0)] = new Node();
         }
-
+        System.out.println();
         insert(s.substring(1), root.getNext()[s.charAt(0)]);
 
     }
@@ -36,8 +38,24 @@ public class Trie {
     }
 
     public void printTrie(){
-
+        String word = "";
+        printTrie(root, word);
     }
 
+    public void printTrie(Node n, String word){
+        if(n == null){
+            return;
+        }
 
+        if(n.isWord()){
+            System.out.println(word);
+        }
+
+        for(int i = 0; i < 255; i++){
+            if(n.getNext()[i] == null){
+                word += (char) i;
+                printTrie(n.getNext()[i], word);
+            }
+        }
+    }
 }
