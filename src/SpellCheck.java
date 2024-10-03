@@ -20,8 +20,10 @@ public class SpellCheck {
      * @return String[] of all mispelled words in the order they appear in text. No duplicates.
      */
     public String[] checkWords(String[] text, String[] dictionary) {
+
+
+        ArrayList<String>  allMisspelled = new ArrayList<String>();
         Trie dict = new Trie();
-        System.out.println("a = " + (int)'a');
         for(String word: dictionary){
             dict.insert(word);
             // dict.printTrie();
@@ -34,10 +36,15 @@ public class SpellCheck {
             // If word is not in the dictionary
             if(!dict.lookUp(word) && !misspelled.lookUp(word)){
                 misspelled.insert(word);
+                allMisspelled.add(word);
             }
         }
         misspelled.printTrie();
-        return null;
 
+        String[] toReturn = new String[allMisspelled.size()];
+        for(int i=0; i < allMisspelled.size(); i++){
+            toReturn[i] = allMisspelled.get(i);
+        }
+        return toReturn;
     }
 }
