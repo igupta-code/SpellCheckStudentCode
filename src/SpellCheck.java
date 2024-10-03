@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Spell Check
  * A puzzle written by Zach Blick
@@ -19,13 +21,23 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
         Trie dict = new Trie();
+        System.out.println("a = " + (int)'a');
         for(String word: dictionary){
             dict.insert(word);
-            dict.printTrie();
+            // dict.printTrie();
         }
 
+        Trie misspelled = new Trie();
 
-
+        // Go through the text
+        for(String word: text){
+            // If word is not in the dictionary
+            if(!dict.lookUp(word) && !misspelled.lookUp(word)){
+                misspelled.insert(word);
+            }
+        }
+        misspelled.printTrie();
         return null;
+
     }
 }
