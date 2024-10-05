@@ -20,31 +20,55 @@ public class SpellCheck {
      * @return String[] of all mispelled words in the order they appear in text. No duplicates.
      */
     public String[] checkWords(String[] text, String[] dictionary) {
+        TST dict = new TST();
+        TST misspelled = new TST();
+        ArrayList<String> allMisspelled = new ArrayList<String>();
 
 
-        ArrayList<String>  allMisspelled = new ArrayList<String>();
-        Trie dict = new Trie();
-        for(String word: dictionary){
+        // Load in the dictionary to the tst
+        for (String word : dictionary) {
             dict.insert(word);
-            // dict.printTrie();
         }
 
-        Trie misspelled = new Trie();
-
-        // Go through the text
-        for(String word: text){
+        for (String word : text) {
             // If word is not in the dictionary
-            if(!dict.lookUp(word) && !misspelled.lookUp(word)){
+            if (!dict.lookUp(word) && !misspelled.lookUp(word)) {
                 misspelled.insert(word);
                 allMisspelled.add(word);
+                System.out.println(word);
             }
         }
-        misspelled.printTrie();
 
+        // Convert Array list to array and return
         String[] toReturn = new String[allMisspelled.size()];
-        for(int i=0; i < allMisspelled.size(); i++){
+        for (int i = 0; i < allMisspelled.size(); i++) {
             toReturn[i] = allMisspelled.get(i);
         }
         return toReturn;
+
+//        ArrayList<String>  allMisspelled = new ArrayList<String>();
+//        Trie dict = new Trie();
+//        for(String word: dictionary){
+//            dict.insert(word);
+//            // dict.printTrie();
+//        }
+//
+//        Trie misspelled = new Trie();
+//
+//        // Go through the text
+//        for(String word: text){
+//            // If word is not in the dictionary
+//            if(!dict.lookUp(word) && !misspelled.lookUp(word)){
+//                misspelled.insert(word);
+//                allMisspelled.add(word);
+//            }
+//        }
+//        misspelled.printTrie();
+//
+//        String[] toReturn = new String[allMisspelled.size()];
+//        for(int i=0; i < allMisspelled.size(); i++){
+//            toReturn[i] = allMisspelled.get(i);
+//        }
+//        return toReturn;
     }
 }
