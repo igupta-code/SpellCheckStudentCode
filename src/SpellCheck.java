@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * for Adventures in Algorithms
  * At Menlo School in Atherton, CA
  *
- * Completed by: [YOUR NAME HERE]
+ * Completed by: Isha Gupta
  * */
 
 public class SpellCheck {
@@ -21,36 +21,39 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
         TST dict = new TST();
-        TST misspelled = new TST();
+        TST foundWords = new TST();
         ArrayList<String> allMisspelled = new ArrayList<String>();
 
 
-        // Load in the dictionary to the tst
-        for (String word : dictionary) {
+        // Load in the dictionary to the dict tst
+        for (String word : dictionary){
             dict.insert(word);
         }
 
-        for (String word : text) {
-            // If word is not in the dictionary
-            if (!dict.lookUp(word) && !misspelled.lookUp(word)) {
-                misspelled.insert(word);
-                allMisspelled.add(word);
-                System.out.println(word);
+        // Check each word in the text to see if it's a word
+        for (String word: text){
+            // If the word is not in foundWords yet, add it
+            if(!foundWords.lookUp(word)){
+                foundWords.insert(word);
+                // If word is not already in the text, and it's not in the dictionary, then add it
+                if(!dict.lookUp(word)){
+                    allMisspelled.add(word);
+                }
             }
         }
 
-        // Convert Array list to array and return
-        String[] toReturn = new String[allMisspelled.size()];
-        for (int i = 0; i < allMisspelled.size(); i++) {
-            toReturn[i] = allMisspelled.get(i);
-        }
-        return toReturn;
+            // Convert Array list to array and return
+            String[] toReturn = new String[allMisspelled.size()];
+            for (int i = 0; i < allMisspelled.size(); i++) {
+                toReturn[i] = allMisspelled.get(i);
+            }
+            return toReturn;
 
+          // Version that implements Trie:
 //        ArrayList<String>  allMisspelled = new ArrayList<String>();
 //        Trie dict = new Trie();
 //        for(String word: dictionary){
 //            dict.insert(word);
-//            // dict.printTrie();
 //        }
 //
 //        Trie misspelled = new Trie();
@@ -63,12 +66,11 @@ public class SpellCheck {
 //                allMisspelled.add(word);
 //            }
 //        }
-//        misspelled.printTrie();
 //
 //        String[] toReturn = new String[allMisspelled.size()];
 //        for(int i=0; i < allMisspelled.size(); i++){
 //            toReturn[i] = allMisspelled.get(i);
 //        }
 //        return toReturn;
+        }
     }
-}

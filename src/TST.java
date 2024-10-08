@@ -1,8 +1,10 @@
-public class TST {
-    // private Node root;
+// Isha Gupta
+// Oct 8th 2024
+public class TST{
     private static final char EMPTY = (char)0;
     private Node root;
 
+    // Node class
     private class Node{
         private Node left, mid, right;
         private char letter;
@@ -25,9 +27,9 @@ public class TST {
     public void insert(String s){
         // If the root is null, insert the letter (only in case of top node)
         if (root.letter == 0){
-            // You want the top letter to be the one you start for
             root.letter = s.charAt(0);
             if (s.length() == 1) root.isWord = true;
+            // Recurse on the rest of the word as normal
             root.mid = insert(s, root.mid, 1);
         }
         else
@@ -36,29 +38,25 @@ public class TST {
 
     public Node insert(String s, Node node, int index){
         // When you reach the end of the string, you are done inserting
-        if(index == s.length()) {
+        if(index == s.length())
             return null;
-        }
 
         // If the node is null, create a new node
-        if(node == null) {
+        if(node == null){
             node = new Node(s.charAt(index));
-            //
-            if(index == s.length()-1)
-                node.isWord = true;
         }
 
+        // If at the end of the word and it's the correct node, return true
+        if(index == s.length()-1 && s.charAt(index) == node.letter)
+            node.isWord = true;
         // Compare current letter to node
         // If equals node, the correct letter is already at the tree(so index + 1)
-        if(s.charAt(index) == node.letter){
-            node.mid = insert(s, node.mid, index+1);
-        }
-        else if(s.charAt(index) > node.letter){
+        else if(s.charAt(index) == node.letter)
+            node.mid = insert(s, node.mid, index + 1);
+        else if(s.charAt(index) > node.letter)
             node.right = insert(s, node.right, index);
-        }
-        else{
+        else
             node.left = insert(s, node.left, index);
-        }
         return node;
     }
 
@@ -68,12 +66,13 @@ public class TST {
     }
 
     public boolean lookUp(String s, Node node, int index){
-        // When you reach end of string, check if it's a word
+        // Base: you are at the end of a branch and haven't found your word
         if(node == null)
             return false;
 
-        // If the node is correct, accept it by move onto the middle node
+        // If the node is correct, accept it by move onto the middle node, else recurse right or left
         if(s.charAt(index) == node.letter){
+            // If you are also at the end of the string, return if it's a word or not, otherwise continue recursing
             if(index == s.length() - 1)
                 return node.isWord;
             else

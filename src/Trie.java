@@ -1,8 +1,8 @@
+// Isha Gupta
+// Oct 8th 2024
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
-// Isha Gupta
-// Oct ___
 public class Trie {
     private Node root;
 
@@ -45,30 +45,5 @@ public class Trie {
 
 
         return lookUp(s.substring(1), root.getNext()[s.charAt(0)]);
-    }
-
-    public void printTrie(){
-        String word = "";
-        printTrie(root, word);
-    }
-
-    public void printTrie(Node n, String word){
-        // If you reach the bottom of your tree you are done
-        if(n == null){
-            return;
-        }
-
-        // If variable is true, n is a word and we should print
-        if(n.isWord()){
-            System.out.println(word);
-        }
-
-
-        for(int i = 0; i < 255; i++){
-            if(n.getNext()[i] != null){
-                String newWord = word + (char) i;
-                printTrie(n.getNext()[i], newWord);
-            }
-        }
     }
 }
